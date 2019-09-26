@@ -1,11 +1,12 @@
 # Lab 1 - Query plans & indexing
 
+**Grading**: 1pt
+
 ## Goals
 
 - Install docker and run the provided container. Configure an SQL client of your choice and connect to the database.
 - Try indexes and see for yourself how they can make a query faster
 - Measure how much indexes slow down writes
-
 
 ## 1. Setup
 
