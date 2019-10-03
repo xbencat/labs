@@ -4,7 +4,9 @@ Grading: 2pt
 
 ## Setup
 
-You will need to switch between 2 containers for this lab. Instructions for the `fiitpdt/postgres` container are included in the Lab #1.
+Use `fiitpdt/postgres` container for this lab. Instructions are included in the Lab #1.
+
+If you want to try the queries from the lecure (optional), you will need another container.
 
 ```
 docker run -p 5432:5432 fiitpdt/postgres-shakespeare
@@ -78,7 +80,7 @@ select customer from documents where
 department = 'Rozhlas a televizia Slovenska';
 ```
 
-Try building an index on the condition that you need (i.e., index on `deparment` column). Measure how is the query without and with this index.
+Try building an index on the condition that you need (i.e., index on `deparment` column). Measure how fast is the query without and with this index.
 
 Build a covering index on `department, customer`. Is the query faster now?
 Make sure that the covering index is used and that you see an Index-only scan.
