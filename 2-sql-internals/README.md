@@ -16,9 +16,7 @@ The database with example data is called `shakespeare`, username is `postgres`, 
 psql -U postgres -h localhost -p 5432 -d shakespeare
 ```
 
-## Labs
-
-1. See how `like` with a leading pattern is slow
+## 1. See how `like` with a leading pattern is slow
 
 Your users need to search documents (`documents` table) by supplier ICO (`supplier_ico` column).
 They often remember the last few digits of the ICO they want to search, and thus
@@ -38,7 +36,7 @@ Think about it. Why didn't the index help?
 (Make sure you create the index for `LIKE` using `text_pattern_ops`, see http://www.postgresql.org/docs/9.4/static/indexes-opclass.html for details.)
 
 
-2. Try `like` with a trailing pattern
+## 2. Try `like` with a trailing pattern
 
 Given the index you created, try searching with a prefix string and a trailing pattern, e.g., `supplier_ico like '57%'`.
 Make sure that the index was created with `text_pattern_ops` options or it wont' be used.
@@ -51,7 +49,7 @@ query gets rewritten to a range query. You can run `explain` even with
 nonsensical inputs, e.g. `supplier_ico like 'Ahoj%'` and you will still see how
 the planner rewrites the like condition.
 
-3. Make the suffix search fast
+## 3. Make the suffix search fast
 
 There is a trick that you can use to make the original suffix query fast. If
 you reverse both the supplier_ico and the input, you can transform the slow
@@ -61,12 +59,14 @@ Hint:
 - Use a functional index
 - Use `reverse` function - https://www.postgresql.org/docs/9.4/functions-string.html
 
-4. Optional: If you want to understand how to properly index `LIKE '%x%'` expressions (and the trade-offs), read
+## 4. Optional: Learn more about indexing `like '%x%'` queries
+
+If you want to understand how to properly index `LIKE '%x%'` expressions (and the trade-offs), read
 
 - http://www.depesz.com/2011/02/19/waiting-for-9-1-faster-likeilike/
 - http://www.postgresql.org/docs/9.4/static/pgtrgm.html
 
-5. Understand covering index
+## 5. Understand covering index
 
 One of the scenarios that your application supports, is showing a list of
 customers (`customer` column) for a specific department (`department` column).
@@ -83,7 +83,7 @@ Try building an index on the condition that you need (i.e., index on `deparment`
 Build a covering index on `department, customer`. Is the query faster now?
 Make sure that the covering index is used and that you see an Index-only scan.
 
-6. Optional: Try the queries from the lecture
+## 6. Optional: Try the queries from the lecture
 
 Try the queries presented in the lecture and observe their plans.
 
