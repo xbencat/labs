@@ -41,7 +41,7 @@ Think about it. Why didn't the index help?
 ## 2. Try `like` with a trailing pattern
 
 Given the index you created, try searching with a prefix string and a trailing pattern, e.g., `supplier_ico like '57%'`.
-Make sure that the index was created with `text_pattern_ops` options or it wont' be used.
+Make sure that the index was created with `text_pattern_ops` options or it won't be used.
 
 Measure how long the query takes with index and without index.
 
